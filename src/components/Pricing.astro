@@ -14,48 +14,45 @@ const { t } = Astro.props;
     </div>
 
     <div class="price-grid">
-      <div class="price free">
-        <div class="price-name">{t.pricing.free.name}</div>
-        <div class="price-amount">
-          <span class="num">{t.pricing.free.amount}</span>
-          <span class="per">{t.pricing.free.per}</span>
-        </div>
-        <div class="price-sub">{t.pricing.free.sub}</div>
-        <ul class="price-feats">
-          {t.pricing.free.feats.map((f) => (
-            <li>
-              <Icon name="check" size={14} />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
-        <a class="btn btn-ghost btn-lg" href="#install">{t.pricing.free.cta}</a>
-      </div>
+      {t.pricing.plans.map((p) => {
+        const featured = p.key === "yearly";
+        return (
+          <div class={`price ${featured ? "pro" : "free"}`}>
+            <div class="price-name">
+              {p.name}
+              {p.ribbon ? <span class="ribbon">{p.ribbon}</span> : null}
+            </div>
+            <div class="price-amount">
+              <span class="num" style={featured ? "color: #fff" : undefined}>{p.amount}</span>
+              <span class="per">{p.per}</span>
+              {p.strike ? <span class="strike">{p.strike}</span> : null}
+            </div>
+            <div class="price-badge">{p.badge}</div>
+            <div class="price-first">{p.firstLine}</div>
+            <div class="price-sub">{p.sub}</div>
+            {featured ? (
+              <a class="btn btn-primary btn-lg" href="#install">
+                <Icon name="bolt" size={15} />
+                {p.cta}
+              </a>
+            ) : (
+              <a class="btn btn-ghost btn-lg" href="#install">{p.cta}</a>
+            )}
+          </div>
+        );
+      })}
+    </div>
 
-      <div class="price pro">
-        <div class="price-name">
-          {t.pricing.pro.name}
-          <span class="ribbon">{t.pricing.pro.ribbon}</span>
-        </div>
-        <div class="price-amount">
-          <span class="num" style="color: #fff">{t.pricing.pro.amount}</span>
-          <span class="per">{t.pricing.pro.per}</span>
-          <span class="strike">{t.pricing.pro.strike}</span>
-        </div>
-        <div class="price-sub">{t.pricing.pro.sub}</div>
-        <ul class="price-feats">
-          {t.pricing.pro.feats.map((f) => (
-            <li>
-              <Icon name="check" size={14} />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
-        <a class="btn btn-primary btn-lg" href="#install">
-          <Icon name="bolt" size={15} />
-          {t.pricing.pro.cta}
-        </a>
-      </div>
+    <div class="price-includes">
+      <div class="price-includes-title">{t.pricing.featsTitle}</div>
+      <ul class="price-includes-list">
+        {t.pricing.feats.map((f) => (
+          <li>
+            <Icon name="check" size={14} />
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 </section>

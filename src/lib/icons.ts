@@ -16,7 +16,10 @@ export type IconName =
   | "list"
   | "menu"
   | "alert"
-  | "copy";
+  | "copy"
+  | "whatsapp"
+  | "facebook"
+  | "mapPin";
 
 export const iconPaths: Record<IconName, string> = {
   signal: `<path d="M2 12c3-5 7-7 10-7s7 2 10 7"/><path d="M6 14c2-3 4-4 6-4s4 1 6 4"/><circle cx="12" cy="18" r="1.5"/>`,
@@ -37,4 +40,7 @@ export const iconPaths: Record<IconName, string> = {
   menu: `<path d="M3 6h18M3 12h18M3 18h18"/>`,
   alert: `<path d="M10.3 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/>`,
   copy: `<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 00-2-2H5a2 2 0 00-2 2v9a2 2 0 002 2h3"/>`,
+  whatsapp: `<path d="M20.5 11.5a8.5 8.5 0 01-12.7 7.4L3 21l2.2-4.6A8.5 8.5 0 1120.5 11.5z"/><path d="M9 9.5c.2 1.4 1 2.7 2 3.7s2.3 1.8 3.7 2c.5.1 1-.2 1.2-.6l.4-.8c.1-.3 0-.6-.3-.8l-1.4-.8c-.3-.2-.6-.1-.8.1l-.4.4c-.7-.3-1.4-.7-1.9-1.2s-.9-1.2-1.2-1.9l.4-.4c.2-.2.3-.5.1-.8L9.9 7c-.2-.3-.5-.4-.8-.3l-.8.4c-.4.2-.7.7-.6 1.2"/>`,
+  facebook: `<path d="M16 3h-3a4 4 0 00-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 011-1h3z"/>`,
+  mapPin: `<path d="M12 22s-7-7.5-7-13a7 7 0 1114 0c0 5.5-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/>`,
 };

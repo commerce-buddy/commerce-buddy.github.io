@@ -1,0 +1,73 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+import type { IconName } from "../lib/icons";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+
+type ChannelKind = "whatsapp" | "phone" | "facebook";
+const channelMeta: Record<ChannelKind, { icon: IconName; accent: string }> = {
+  whatsapp: { icon: "whatsapp", accent: "#25D366" },
+  phone:    { icon: "phone",    accent: "var(--accent)" },
+  facebook: { icon: "facebook", accent: "#1877F2" },
+};
+---
+<section class="section contact-section" id="contact">
+  <div class="wrap">
+    <div class="section-head" style="text-align: center; margin: 0 auto">
+      <div class="eyebrow" style="justify-content: center">{t.contact.eyebrow}</div>
+      <h2 class="h2">{t.contact.title}</h2>
+      <p class="lede" style="margin: 0 auto">{t.contact.lede}</p>
+    </div>
+
+    <div class="contact-grid">
+      {t.contact.channels.map((c) => {
+        const m = channelMeta[c.kind as ChannelKind] ?? channelMeta.phone;
+        const external = c.href.startsWith("http");
+        return (
+          <a
+            class="contact-card"
+            href={c.href}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
+            style={`--ch-accent: ${m.accent}`}
+          >
+            <span class="contact-icon">
+              <Icon name={m.icon} size={18} />
+            </span>
+            <span class="contact-meta">
+              <span class="contact-label">{c.label}</span>
+              <span class="contact-value">{c.value}</span>
+            </span>
+            <span class="contact-action">
+              {c.action}
+              <Icon name="arrow" size={14} />
+            </span>
+          </a>
+        );
+      })}
+    </div>
+
+    <div class="contact-meta-row">
+      <div class="contact-meta-block">
+        <span class="contact-meta-icon"><Icon name="mapPin" size={16} /></span>
+        <div>
+          <div class="contact-meta-label">{t.contact.addressLabel}</div>
+          <div class="contact-meta-value">
+            {t.contact.address.map((line, i) => (
+              <span>{line}{i < t.contact.address.length - 1 ? <br /> : null}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="contact-meta-block">
+        <span class="contact-meta-icon"><Icon name="clock" size={16} /></span>
+        <div>
+          <div class="contact-meta-label">{t.contact.hoursLabel}</div>
+          <div class="contact-meta-value">{t.contact.hours}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
