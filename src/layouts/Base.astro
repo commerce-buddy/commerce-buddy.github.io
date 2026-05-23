@@ -5,9 +5,16 @@ interface Props {
   lang: "en" | "bn";
   title: string;
   description: string;
+  image?: string;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, image = "/assets/dashboard-cutout.png" } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+const ogLocale = lang === "bn" ? "bn_BD" : "en_US";
+const ogLocaleAlt = lang === "bn" ? "en_US" : "bn_BD";
+const siteName = "Commerce Buddy";
 ---
 <!doctype html>
 <html lang={lang}>
@@ -16,6 +23,30 @@ const { lang, title, description } = Astro.props;
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={description} />
+    <meta property="og:image:width" content="2684" />
+    <meta property="og:image:height" content="1280" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={description} />
+
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="icon" type="image/png" href="/assets/commerce-buddy-logo.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
