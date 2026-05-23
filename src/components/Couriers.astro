@@ -1,0 +1,28 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<div class="couriers" id="couriers">
+  <div>
+    <h3>{t.couriers.h}</h3>
+    <p>{t.couriers.p}</p>
+  </div>
+  <div class="courier-col">
+    <div class="courier-row">
+      {t.couriers.items.map((c) => (
+        <span class="courier-chip live">
+          <span class="swatch" style={`background: ${c.color}`}>{c.letters}</span>
+          {c.name}
+          <span class="live-tag">{t.couriers.liveTag}</span>
+        </span>
+      ))}
+    </div>
+    <div class="courier-soon">
+      <Icon name="clock" size={13} />
+      <span>{t.couriers.soonNote}</span>
+    </div>
+  </div>
+</div>

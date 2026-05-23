@@ -1,0 +1,61 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<section class="section" id="pricing" style="background: var(--bg-2)">
+  <div class="wrap">
+    <div class="section-head" style="text-align: center; margin: 0 auto">
+      <div class="eyebrow" style="justify-content: center">{t.pricing.eyebrow}</div>
+      <h2 class="h2">{t.pricing.title}</h2>
+      <p class="lede" style="margin: 0 auto">{t.pricing.lede}</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price free">
+        <div class="price-name">{t.pricing.free.name}</div>
+        <div class="price-amount">
+          <span class="num">{t.pricing.free.amount}</span>
+          <span class="per">{t.pricing.free.per}</span>
+        </div>
+        <div class="price-sub">{t.pricing.free.sub}</div>
+        <ul class="price-feats">
+          {t.pricing.free.feats.map((f) => (
+            <li>
+              <Icon name="check" size={14} />
+              <span>{f}</span>
+            </li>
+          ))}
+        </ul>
+        <a class="btn btn-ghost btn-lg" href="#install">{t.pricing.free.cta}</a>
+      </div>
+
+      <div class="price pro">
+        <div class="price-name">
+          {t.pricing.pro.name}
+          <span class="ribbon">{t.pricing.pro.ribbon}</span>
+        </div>
+        <div class="price-amount">
+          <span class="num" style="color: #fff">{t.pricing.pro.amount}</span>
+          <span class="per">{t.pricing.pro.per}</span>
+          <span class="strike">{t.pricing.pro.strike}</span>
+        </div>
+        <div class="price-sub">{t.pricing.pro.sub}</div>
+        <ul class="price-feats">
+          {t.pricing.pro.feats.map((f) => (
+            <li>
+              <Icon name="check" size={14} />
+              <span>{f}</span>
+            </li>
+          ))}
+        </ul>
+        <a class="btn btn-primary btn-lg" href="#install">
+          <Icon name="bolt" size={15} />
+          {t.pricing.pro.cta}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

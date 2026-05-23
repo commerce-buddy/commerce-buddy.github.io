@@ -1,0 +1,30 @@
+---
+import type { T } from "../data/content";
+import ParcelReport from "./ParcelReport.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<section class="section" id="fraud" style="background: var(--bg-2)">
+  <div class="wrap">
+    <div class="fraud-grid">
+      <div>
+        <div class="eyebrow">{t.fraud.eyebrow}</div>
+        <h2 class="h2">{t.fraud.title}</h2>
+        <p class="lede">{t.fraud.lede}</p>
+        <ul class="fraud-checks">
+          {t.fraud.checks.map((c, i) => (
+            <li>
+              <div class="ck-num">{String(i + 1).padStart(2, "0")}</div>
+              <div>
+                <div class="ck-t">{c.t}</div>
+                <div class="ck-s">{c.s}</div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <ParcelReport t={t} />
+    </div>
+  </div>
+</section>

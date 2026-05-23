@@ -1,0 +1,23 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+import type { IconName } from "../lib/icons";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<div class="wrap">
+  <div class="pillars">
+    <div class="pillars-grid">
+      {t.pillars.items.map((p) => (
+        <div class="pillar">
+          <div class="ico">
+            <Icon name={p.icon as IconName} size={22} />
+          </div>
+          <div class="label">{p.t}</div>
+          <div class="sub">{p.s}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

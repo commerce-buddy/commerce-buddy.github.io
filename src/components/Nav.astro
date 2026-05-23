@@ -1,0 +1,50 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import type { Lang, T } from "../data/content";
+
+interface Props {
+  t: T;
+  lang: Lang;
+}
+const { t, lang } = Astro.props;
+
+const enUrl = getRelativeLocaleUrl("en", "");
+const bnUrl = getRelativeLocaleUrl("bn", "");
+---
+<nav class="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href={lang === "en" ? enUrl : bnUrl}>
+      <span class="brand-mark">
+        <img src="/assets/commerce-buddy-logo.png" alt="" />
+      </span>
+      <span class="brand-name">Commerce Buddy</span>
+      <span class="brand-tag">Pro</span>
+    </a>
+
+    <div class="nav-links hide-sm">
+      <a class="nav-link" href="#tracking">{t.nav.tracking}</a>
+      <a class="nav-link" href="#fraud">{t.nav.fraud}</a>
+      <a class="nav-link" href="#pricing">{t.nav.pricing}</a>
+      <a class="nav-link" href="#faq">{t.nav.faq}</a>
+      <a class="nav-link" href="#install">{t.nav.docs}</a>
+    </div>
+
+    <div class="nav-cta">
+      <div class="lang-toggle" role="tablist" aria-label="Language">
+        <a
+          role="tab"
+          aria-selected={lang === "en"}
+          class={lang === "en" ? "is-active" : ""}
+          href={enUrl}
+        >EN</a>
+        <a
+          role="tab"
+          aria-selected={lang === "bn"}
+          class={`bn-label ${lang === "bn" ? "is-active" : ""}`}
+          href={bnUrl}
+        >বাংলা</a>
+      </div>
+      <a class="btn btn-primary btn-sm hide-sm" href="#pricing">{t.nav.trial}</a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,45 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<section class="section" id="audience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">{t.audience.eyebrow}</div>
+      <h2 class="h2">{t.audience.title}</h2>
+    </div>
+
+    <div class="aud-grid">
+      <div class="aud merchant">
+        <div class="aud-eb">{t.audience.merchant.eb}</div>
+        <h3>{t.audience.merchant.h}</h3>
+        <p>{t.audience.merchant.p}</p>
+        <ul class="aud-list">
+          {t.audience.merchant.items.map((it) => (
+            <li>
+              <span class="tk"><Icon name="check" size={11} /></span>
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="aud dev">
+        <div class="aud-eb">{t.audience.dev.eb}</div>
+        <h3>{t.audience.dev.h}</h3>
+        <p>{t.audience.dev.p}</p>
+        <ul class="aud-list">
+          {t.audience.dev.items.map((it) => (
+            <li>
+              <span class="tk"><Icon name="check" size={11} /></span>
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

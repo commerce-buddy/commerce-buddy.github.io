@@ -1,0 +1,9 @@
+---
+import type { T } from "../data/content";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<figure class="parcel-shot">
+  <img src="/assets/parcel-report.png" alt={t.fraud.parcelAlt} />
+</figure>

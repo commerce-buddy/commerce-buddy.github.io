@@ -1,0 +1,41 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<section class="section" id="install" style="background: var(--bg-2)">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">{t.install.eyebrow}</div>
+      <h2 class="h2">{t.install.title}</h2>
+      <p class="lede">{t.install.lede}</p>
+    </div>
+
+    <div class="install">
+      {t.install.steps.map((s, i) => (
+        <div class="step">
+          <div class="step-num">{String(i + 1).padStart(2, "0")}</div>
+          <div class="step-t">{s.t}</div>
+          <div class="step-d">{s.s}</div>
+          {"code" in s && s.code && <div class="step-code">{s.code}</div>}
+        </div>
+      ))}
+    </div>
+
+    <div class="final-cta" style="margin-top: 64px">
+      <div class="inner">
+        <h2>{t.finalCta.h}</h2>
+        <p>{t.finalCta.p}</p>
+        <div class="row">
+          <a class="btn btn-primary btn-lg" href="#pricing">
+            <Icon name="bolt" size={15} />
+            {t.finalCta.ctaPrimary}
+          </a>
+          <a class="btn btn-ghost btn-lg" href="#">{t.finalCta.ctaSecondary}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

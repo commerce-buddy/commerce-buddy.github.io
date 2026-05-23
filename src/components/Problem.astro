@@ -1,0 +1,58 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">{t.problem.eyebrow}</div>
+      <h2 class="h2">{t.problem.title}</h2>
+      <p class="lede">{t.problem.lede}</p>
+    </div>
+
+    <div class="ps-grid">
+      <div class="ps-card bad">
+        <span class="badge">
+          <Icon name="x" size={12} />
+          {t.problem.bad.badge}
+        </span>
+        <h3>{t.problem.bad.h}</h3>
+        <p>{t.problem.bad.p}</p>
+        <ul class="ps-list">
+          {t.problem.bad.items.map((it) => (
+            <li>
+              <span class="mk">×</span>
+              <div>
+                <strong style="color: var(--ink)">{it.t}.</strong>{" "}
+                <span>{it.s}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="ps-card good">
+        <span class="badge">
+          <Icon name="check" size={12} />
+          {t.problem.good.badge}
+        </span>
+        <h3>{t.problem.good.h}</h3>
+        <p>{t.problem.good.p}</p>
+        <ul class="ps-list">
+          {t.problem.good.items.map((it) => (
+            <li>
+              <span class="mk">✓</span>
+              <div>
+                <strong style="color: var(--ink)">{it.t}.</strong>{" "}
+                <span>{it.s}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

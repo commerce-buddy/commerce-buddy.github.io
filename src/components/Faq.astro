@@ -1,0 +1,26 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">{t.faq.eyebrow}</div>
+      <h2 class="h2">{t.faq.title}</h2>
+    </div>
+    <div class="faq-grid">
+      {t.faq.items.map((it, i) => (
+        <details class="faq-item" open={i === 0}>
+          <summary>
+            <span>{it.q}</span>
+            <span class="chev"><Icon name="chevron" size={14} /></span>
+          </summary>
+          <div class="faq-a">{it.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

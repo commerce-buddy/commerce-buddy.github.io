@@ -1,0 +1,19 @@
+---
+import type { T } from "../data/content";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<footer class="foot">
+  <div class="wrap foot-row">
+    <div class="copy">
+      <span class="brand-mark" style="width: 22px; height: 22px; border-radius: 6px">
+        <img src="/assets/commerce-buddy-logo.png" alt="" style="width: 16px; height: 16px" />
+      </span>
+      <span>{t.footer.copy}</span>
+    </div>
+    <div class="links">
+      {t.footer.links.map((l) => <a href="#">{l}</a>)}
+    </div>
+  </div>
+</footer>

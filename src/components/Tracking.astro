@@ -1,0 +1,78 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+import Couriers from "./Couriers.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<section class="section" id="tracking" style="padding-top: 24px">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">{t.tracking.eyebrow}</div>
+      <h2 class="h2">{t.tracking.title}</h2>
+      <p class="lede">{t.tracking.lede}</p>
+    </div>
+
+    <div class="tracking-grid">
+      {t.tracking.cards.map((c) => (
+        <div class="tcard">
+          <div class={`tlogo ${c.logoClass}`}>{c.logo}</div>
+          <h3>{c.name}</h3>
+          <p class="tsub">{c.sub}</p>
+          <ul class="tfeats">
+            {c.feats.map((f) => (
+              <li>
+                <Icon name="check" size={14} />
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="dedup">
+      <div>
+        <div class="eyebrow">{t.tracking.dedup.eyebrow}</div>
+        <h3>{t.tracking.dedup.h}</h3>
+        <p>{t.tracking.dedup.p}</p>
+      </div>
+      <div class="dedup-vis">
+        <div class="lane">
+          <span class="src">browser pixel</span>
+          <span class="arrow"></span>
+          <span class="eid">event_id: cb_order_3284</span>
+          <span class="arrow"></span>
+          <span class="target">Meta</span>
+        </div>
+        <hr />
+        <div class="lane">
+          <span class="src">server CAPI</span>
+          <span class="arrow"></span>
+          <span class="eid">event_id: cb_order_3284</span>
+          <span class="arrow"></span>
+          <span class="target">Meta</span>
+        </div>
+        <hr />
+        <div class="lane">
+          <span class="src">server MP</span>
+          <span class="arrow"></span>
+          <span class="eid">event_id: cb_order_3284</span>
+          <span class="arrow"></span>
+          <span class="target">GA4</span>
+        </div>
+        <hr />
+        <div class="lane">
+          <span class="src">click upload</span>
+          <span class="arrow"></span>
+          <span class="eid">event_id: cb_order_3284</span>
+          <span class="arrow"></span>
+          <span class="target">Ads</span>
+        </div>
+      </div>
+    </div>
+
+    <Couriers t={t} />
+  </div>
+</section>

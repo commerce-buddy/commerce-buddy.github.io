@@ -1,0 +1,41 @@
+---
+import { content, type Lang } from "../data/content";
+import Base from "../layouts/Base.astro";
+import Nav from "./Nav.astro";
+import Hero from "./Hero.astro";
+import Pillars from "./Pillars.astro";
+import Problem from "./Problem.astro";
+import Tracking from "./Tracking.astro";
+import Fraud from "./Fraud.astro";
+import Audience from "./Audience.astro";
+import Pricing from "./Pricing.astro";
+import Faq from "./Faq.astro";
+import Install from "./Install.astro";
+import Footer from "./Footer.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = content[lang];
+
+const titles = {
+  en: "Commerce Buddy — Tracking, fraud shield, courier autopilot for WooCommerce",
+  bn: "কমার্স বাডি — WooCommerce-এর জন্য ট্র্যাকিং, ফ্রড শিল্ড, কুরিয়ার অটোপাইলট",
+};
+const descriptions = {
+  en: "WooCommerce plugin for Bangladeshi stores. Server-side Meta Pixel + CAPI, GA4, Google Ads, Pathao/Steadfast/RedX, and a community fraud blocklist — all from your WP admin.",
+  bn: "বাংলাদেশি WooCommerce স্টোরের প্লাগইন। সার্ভার-সাইড Meta Pixel + CAPI, GA4, Google Ads, Pathao/Steadfast/RedX আর কমিউনিটি ফ্রড ব্লকলিস্ট — সব আপনার WP অ্যাডমিন থেকে।",
+};
+---
+<Base lang={lang} title={titles[lang]} description={descriptions[lang]}>
+  <Nav t={t} lang={lang} />
+  <Hero t={t} />
+  <Pillars t={t} />
+  <Problem t={t} />
+  <Tracking t={t} />
+  <Fraud t={t} />
+  <Audience t={t} />
+  <Pricing t={t} />
+  <Faq t={t} />
+  <Install t={t} />
+  <Footer t={t} />
+</Base>

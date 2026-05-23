@@ -1,0 +1,54 @@
+---
+import type { T } from "../data/content";
+import Icon from "./Icon.astro";
+
+interface Props { t: T; }
+const { t } = Astro.props;
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <div class="eyebrow">{t.hero.eyebrow}</div>
+      <h1 class="h1">
+        {t.hero.title[0]} <span style="color: var(--accent)">{t.hero.title[1]}</span>
+      </h1>
+      <p class="lede">{t.hero.lede}</p>
+
+      <div class="hero-bullets">
+        {t.hero.bullets.map((b) => (
+          <span class="hero-bullet">
+            <span class="dot"></span>
+            {b}
+          </span>
+        ))}
+      </div>
+
+      <div class="hero-cta-row">
+        <a class="btn btn-primary btn-lg" href="#pricing">
+          <Icon name="bolt" size={16} />
+          {t.hero.ctaPrimary}
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#fraud">
+          <Icon name="play" size={14} />
+          {t.hero.ctaSecondary}
+        </a>
+      </div>
+
+      <div class="hero-cta-meta">
+        <Icon name="check" size={14} style="color: var(--success)" />
+        {t.hero.ctaMeta}
+      </div>
+    </div>
+
+    <div class="hero-showcase">
+      <div class="mock">
+        <div class="mock-chrome">
+          <div class="lights"><span></span><span></span><span></span></div>
+          <div class="url">{t.dash.url}</div>
+          <div style="width: 50px"></div>
+        </div>
+        <img class="shot" src="/assets/dashboard-cutout.png" alt={t.heroShotAlt} />
+      </div>
+    </div>
+  </div>
+</section>
