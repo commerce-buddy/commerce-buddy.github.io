@@ -8,7 +8,7 @@ interface Props {
   image?: string;
 }
 
-const { lang, title, description, image = "/assets/dashboard-cutout.png" } = Astro.props;
+const { lang, title, description, image = "/assets/commerce-buddy-og.jpg" } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
